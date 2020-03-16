@@ -16,7 +16,7 @@ F = np.arange(2*Fmin, Fmax, 800)
 # time step
 delta_t = 1 / (2 * (Fmin + Fmax))
 
-Ui = A[0]*np.cos(2*np.pi*F[0]*i*delta_t) + A[1]*np.cos(2*np.pi*F[1]*i*delta_t) + A[2]*np.cos(2*np.pi*F[2]*i*delta_t) + A[3]*np.cos(2*np.pi*F[3]*i*delta_t)
+Ui = Ui = np.cos(2*np.pi*400*i*delta_t) + 2*np.cos(2*np.pi*950*i*delta_t) + 3*np.cos(2*np.pi*1325*i*delta_t)
 
 # Select: plot, stem, bar
 def plt_sel(s, *args, **kwargs):

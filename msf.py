@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.fftpack import fft, ifft
 import math
 
 
@@ -10,7 +9,7 @@ def draw_time_representation (x, y, title, x_label, y_label):
     ax.set_title(title)
     ax.set_xlabel(x_label)
     ax.set_ylabel(y_label)
-    ax.set_xlim([np.min(x), x[200]])
+    ax.set_xlim([np.min(x), x[400]])
     ax.set_ylim(math.ceil(np.min(y)) - 1, math.ceil(np.max(y)) + 1)
 
     ax.grid(which='major',
@@ -30,11 +29,11 @@ def draw_time_representation (x, y, title, x_label, y_label):
 def draw_compare_time_representation(x, y1, y2, title, x_label, y_label):
     fig, ax = plt.subplots(figsize=(10, 10))
     ax.plot(x, y1, color='red', linestyle='-', linewidth=1)
-    ax.plot(x, y2, color='green', linestyle=':', linewidth=2)
+    ax.plot(x, y2, color='blue', linestyle=':', linewidth=1)
     ax.set_title(title)
     ax.set_xlabel(x_label)
     ax.set_ylabel(y_label)
-    ax.set_xlim([np.min(x), x[200]])
+    ax.set_xlim([np.min(x), x[400]])
     ax.set_ylim(math.ceil(np.min(y1)) - 1, math.ceil(np.max(y1)) + 1)
 
     ax.grid(which='major',

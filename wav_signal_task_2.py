@@ -5,7 +5,7 @@ from scipy.fftpack import fft, ifft
 import wsf
 
 
-samplerate, data = wavfile.read("C:/Users/User/PycharmProjects/PAZI_lab_1/wav/new_example.wav")
+samplerate, data = wavfile.read("C:/Users/User/PycharmProjects/pazi_lab_1_final/example_scr.wav")
 length = data.shape[0] / samplerate
 # sample vector 0 .. (N-1)
 i = np.arange(int(data.shape[0]))
@@ -19,17 +19,6 @@ delta_f = 1 / (int(data.shape[0])*delta_t)
 f = i*delta_f
 # scrambling frequency
 Fscr = 1 / (4*delta_t)
-
-wsf.draw_time_representation(t, data, "График скрэмблированного сигнала", "A", "t")
-
-#another method for draw
-# time = np.linspace(0., length, data.shape[0])
-# plt.plot(time, data)
-# plt.legend()
-# plt.xlabel("Time [s]")
-# plt.ylabel("Amplitude")
-# plt.show()
-
 
 # scrambling signal
 SCRi = np.cos(2*np.pi*float(Fscr)*i*delta_t)
@@ -47,7 +36,7 @@ wsf.draw_spectrum_representation(f, 2*np.abs(FFT_data_sum_filtered)/data.shape[0
 
 IFFT_FFT_Ui_filtered = ifft(FFT_data_sum_filtered)
 
-wsf.draw_compare_time_representation(t, data, np.real(IFFT_FFT_Ui_filtered), "Сравнение исходного и дескрэмблированного сигнала", "A", "t")
+wsf.draw_compare_time_representation(t, data, np.real(IFFT_FFT_Ui_filtered), "Сравнение исходного и дескрэмблированного сигнала", "t", "A")
 
 IFFT_FFT_Ui_filtered = 4*np.real(IFFT_FFT_Ui_filtered)
-wavfile.write("example_old.wav", 44100, IFFT_FFT_Ui_filtered)
+wavfile.write("C:/Users/User/PycharmProjects/pazi_lab_1_final/example_descr.wav", 44100, IFFT_FFT_Ui_filtered)

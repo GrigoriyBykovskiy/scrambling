@@ -1,11 +1,10 @@
-import matplotlib.pyplot as plt
 import numpy as np
 from scipy.io import wavfile
 from scipy.fftpack import fft, ifft
 import wsf
 
 
-samplerate, data = wavfile.read("C:/Users/User/PycharmProjects/PAZI_lab_1/wav/test.wav")
+samplerate, data = wavfile.read("C:/Users/User/PycharmProjects/pazi_lab_1_final/example.wav")
 length = data.shape[0] / samplerate
 # sample vector 0 .. (N-1)
 i = np.arange(int(data.shape[0]))
@@ -17,7 +16,7 @@ t = i*delta_t
 delta_f = 1 / (int(data.shape[0])*delta_t)
 # freq vector
 f = i*delta_f
-# scrambling frequency
+# scrambling frequency; unsafe method!
 Fscr = 1 / (4*delta_t)
 
 wsf.draw_time_representation(t, data, "График сигнала", "t", "A")
@@ -34,7 +33,7 @@ data_sum = data*SCRi
 
 # make fft
 FFT_data_sum = fft(data_sum)
-wsf.draw_spectrum_representation(f, 2*np.abs(FFT_data_sum)/data.shape[0], "Спектр скрэмблированного сигнала", "f", "spectrum")
+wsf.draw_spectrum_representation(f,  2*np.abs(FFT_data_sum)/data.shape[0], "Спектр скрэмблированного сигнала", "f", "spectrum")
 
 FFT_data_sum_filtered = wsf.get_filtered_spectrum(Fscr, data.shape[0], delta_f, f, FFT_data_sum)
 
@@ -44,4 +43,4 @@ IFFT_FFT_Ui_filtered = ifft(FFT_data_sum_filtered)
 
 wsf.draw_compare_time_representation(t, data, np.real(IFFT_FFT_Ui_filtered), "Сравнение исходного и скрэмблированного сигнала", "t", "A")
 IFFT_FFT_Ui_filtered = np.real(IFFT_FFT_Ui_filtered)
-wavfile.write("new_example.wav", 44100, IFFT_FFT_Ui_filtered)
+wavfile.write("C:/Users/User/PycharmProjects/pazi_lab_1_final/example_scr.wav", 44100, IFFT_FFT_Ui_filtered)

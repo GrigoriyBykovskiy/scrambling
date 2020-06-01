@@ -29,7 +29,7 @@ def draw_time_representation (x, y, title, x_label, y_label):
 def draw_compare_time_representation(x, y1, y2, title, x_label, y_label):
     fig, ax = plt.subplots(figsize=(10, 10))
     ax.plot(x, y1, color='red', linestyle='-', linewidth=1)
-    ax.plot(x, y2, color='green', linestyle=':', linewidth=2)
+    ax.plot(x, y2, color='blue', linestyle=':', linewidth=2)
     ax.set_title(title)
     ax.set_xlabel(x_label)
     ax.set_ylabel(y_label)
